@@ -1,10 +1,9 @@
 from dataclasses import dataclass, asdict
-"""Импортировать из модуля декоратор и метод
-для создания словаря."""
+"""Импортировать из модуля декоратор и метод."""
 
 
 @dataclass
-class InfoMessage():
+class InfoMessage:
     """Информационное сообщение о тренировке."""
 
     training_type: str
@@ -47,7 +46,8 @@ class Training:
 
     def get_spent_calories(self) -> float:
         """Получить количество затраченных калорий."""
-        pass
+        if not float:
+            raise NotImplementedError('Расчет калорий не выполнен')
 
     def show_training_info(self) -> InfoMessage:
         """Вернуть информационное сообщение о выполненной тренировке."""
@@ -132,7 +132,9 @@ class Swimming(Training):
 
 
 def read_package(workout_type: str, data: list) -> Training:
-    """Прочитать данные, полученные от датчиков."""
+    """Прочитать данные, полученные от датчиков:
+    буквенный код типа тренировки, список числовых значений."""
+    """Создать словарь - буквенный код: подкласс тренировки."""
     dict_workout = {
         'RUN': Running,
         'WLK': SportsWalking,
@@ -140,6 +142,8 @@ def read_package(workout_type: str, data: list) -> Training:
     }
     if workout_type in dict_workout:
         return dict_workout[workout_type](*data)
+    else:
+        return ValueError('Тип тренировки не определен.')
 
 
 def main(training: Training) -> None:
