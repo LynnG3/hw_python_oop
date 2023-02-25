@@ -1,7 +1,6 @@
 from dataclasses import dataclass, asdict
 """Импортировать из модуля декоратор и метод."""
 
-
 @dataclass
 class InfoMessage:
     """Информационное сообщение о тренировке."""
@@ -41,7 +40,7 @@ class Training:
         return self.action * self.LEN_STEP / self.M_IN_KM
 
     def get_mean_speed(self) -> float:
-        """Получить среднюю скорость движения."""
+        """Получить среднюю скорость движения,км/ч."""
         return self.get_distance() / self.duration
 
     def get_spent_calories(self) -> float:
@@ -120,7 +119,7 @@ class Swimming(Training):
         self.count_pool = count_pool
 
     def get_mean_speed(self) -> float:
-        """Рассчитать среднюю скорость для плавания."""
+        """Рассчитать среднюю скорость для плавания,км/ч"""
         return (self.length_pool * self.count_pool
                 / self.M_IN_KM / self.duration)
 
@@ -133,9 +132,8 @@ class Swimming(Training):
 
 def read_package(workout_type: str, data: list) -> Training:
     """Прочитать данные, полученные от датчиков:
-    буквенный код типа тренировки, список числовых значений."""
-    """Создать словарь - буквенный код: подкласс тренировки."""
-    dict_workout = {
+    код типа тренировки, список числовых значений."""
+    dict_workout: type[dict_workout] = {
         'RUN': Running,
         'WLK': SportsWalking,
         'SWM': Swimming
@@ -143,7 +141,7 @@ def read_package(workout_type: str, data: list) -> Training:
     if workout_type in dict_workout:
         return dict_workout[workout_type](*data)
     else:
-        return ValueError('Тип тренировки не определен.')
+        raise ValueError('Тип тренировки не определен.')
 
 
 def main(training: Training) -> None:
