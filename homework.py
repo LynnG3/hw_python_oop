@@ -1,6 +1,7 @@
 from dataclasses import dataclass, asdict
 """Импортировать из модуля декоратор и метод."""
 
+
 @dataclass
 class InfoMessage:
     """Информационное сообщение о тренировке."""
