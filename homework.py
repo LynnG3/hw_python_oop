@@ -46,8 +46,8 @@ class Training:
 
     def get_spent_calories(self) -> float:
         """Получить количество затраченных калорий."""
-        if not float:
-            raise NotImplementedError('Расчет калорий не выполнен')
+
+        raise NotImplementedError('Расчет калорий не выполнен')
 
     def show_training_info(self) -> InfoMessage:
         """Вернуть информационное сообщение о выполненной тренировке."""
@@ -134,7 +134,7 @@ class Swimming(Training):
 def read_package(workout_type: str, data: list) -> Training:
     """Прочитать данные, полученные от датчиков:
     код типа тренировки, список числовых значений."""
-    dict_workout: type[dict_workout] = {
+    dict_workout: dict[str, type] = {
         'RUN': Running,
         'WLK': SportsWalking,
         'SWM': Swimming
