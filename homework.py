@@ -60,8 +60,8 @@ class Training:
 class Running(Training):
     """Тренировка: бег."""
 
-    CALORIES_MEAN_SPEED_MULTIPLIER = 18
-    CALORIES_MEAN_SPEED_SHIFT = 1.79
+    CALORIES_MEAN_SPEED_MULTIPLIER: float = 18
+    CALORIES_MEAN_SPEED_SHIFT: float = 1.79
 
     def __init__(self, action: int,
                  duration: float,
@@ -134,7 +134,7 @@ class Swimming(Training):
 def read_package(workout_type: str, data: list) -> Training:
     """Прочитать данные, полученные от датчиков:
     код типа тренировки, список числовых значений."""
-    dict_workout: dict[str, type] = {
+    dict_workout: dict[str, type[Training]] = {
         'RUN': Running,
         'WLK': SportsWalking,
         'SWM': Swimming
